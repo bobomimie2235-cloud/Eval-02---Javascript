@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eval 02 - Panier Malin</title>
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-        <main class="container">
+    <main class="container">
         <section id="boutique">
             <h2>Nos Produits</h2>
             <div id="produits-container" class="grid-produits">
-                </div>
+            </div>
         </section>
 
         <aside id="panier-section">
             <h2>Votre Panier</h2>
-            
+
             <div id="panier-liste">
                 <p>Votre panier est vide.</p>
-                </div>
+            </div>
 
             <div class="total-section">
                 <h3>Total : <span id="montant-total">0.00</span> €</h3>
+                <button id="btn-vider-panier" type="button">Vider le panier</button>
             </div>
 
             <div class="commande-box">
                 <h3>Finaliser la commande</h3>
-                <div id="message-feedback"></div> <input type="email" id="email-client" placeholder="Votre email (ex: jean@mail.com)">
-                <button id="btn-commander">Passer la commande</button>
+                <div id="message-feedback"></div>
+                <form id="form-commande">
+                    <input type="email" id="email-client" placeholder="Votre email (ex: jean@mail.com)">
+                    <button type="submit" id="btn-commander">Passer la commande</button>
+                </form>
             </div>
         </aside>
     </main>
 
     <script src="/script.js"></script>
 </body>
+
 </html>

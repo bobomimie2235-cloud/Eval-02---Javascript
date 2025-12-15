@@ -12,8 +12,6 @@ const panierListe = document.getElementById("panier-liste");
 const totalSection = document.getElementsByClassName("total-section");
 const montantTotal = document.getElementById("montant-total");
 const commandeBox = document.getElementsByClassName("commande-box");
-const messageFeedback = document.getElementById("message-feedback");
-const btnCommander = document.getElementById("btn-commander");
 
 // Sauvegarder/Charger mon panier entre chaque rafraichissement
 let panierFiche = JSON.parse(localStorage.getItem("panier")) || [];
@@ -111,7 +109,7 @@ function afficherPanier() {
         pQuantite.textContent = `Quantité : ${item.quantite}`;
 
         const sousTotal = document.createElement("p");
-        sousTotal.textContent = "Sous-Total : " + (item.prix*item.quantite) + " €";
+        sousTotal.textContent = "Sous-Total : " + (item.prix * item.quantite) + " €";
 
         // Ajout Bouton Supprimer au produit du panier
 
@@ -128,7 +126,7 @@ function afficherPanier() {
             }
 
             savePanier();
-            afficherPanier(); 
+            afficherPanier();
         });
 
         div.append(h3Panier, pPrixPanier, pQuantite, sousTotal, btnSupprimer);
@@ -147,4 +145,44 @@ function calculTotal() {
         total += item.prix * item.quantite;
     });
     montantTotal.textContent = Math.round(total * 100) / 100;
+    return total;
 }
+
+// FORMULAIRE
+
+const formulaire = document.getElementById("form-commande");
+const messageFeedback = document.getElementById("message-feedback");
+const mailClient = document.getElementById("email-client");
+const btnCommander = document.getElementById("btn-commander");
+
+formulaire.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    let formValid = true;
+
+    // Vérification du montant du panier
+    if (calculTotal() === 0) {
+        messageFeedback.textContent = "Le panier est vide";
+        formValid = false;
+    } else {
+        messageFeedback.textContent = "";
+    }
+
+    // verification du mail
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!regexEmail.test(mailClient.value.trim())) {
+        messageFeedback.textContent = "Veuillez entrer une adresse e-mail valide.";
+        mailClient.classList.add("error");
+        mailClient.classList.remove("valid");
+        formValid = false;
+    } else {
+        mailClient.classList.add("valid");
+        mailClient.classList.remove("error");
+    }
+
+    if (formValid) {
+        messageFeedback.textContent = "Commande validée !";
+    }
+
+});
