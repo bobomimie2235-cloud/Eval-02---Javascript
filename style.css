@@ -36,6 +36,7 @@ h1 {
 
 h2 {
     font-family: acme;
+    margin: 10px 0;
 }
 
 #produits-container {
@@ -70,6 +71,11 @@ h2 {
     }
 }
 
+
+/* =================== */
+/*   PANIER PRODUITS   */
+/* =================== */
+
 /* FICHE PRODUITS PANIER : */
 
 .listePanier {
@@ -80,39 +86,129 @@ h2 {
     background-color: lightyellow;
 }
 
+.detailsProduit {
+    padding: 10px;
+}
+
 .listePanier h3 {
     width: 150px;
 }
 
 .listePanier p {
     width: 140px;
+    padding: 2px;
     margin: 0;
 }
 
 .listePanier button {
     width: 120px;
     border-radius: 10px;
+    margin : 5px;
 }
+
+/* bouton supprimer quantité */
 
 .btnSupprQuantite {
     background-color: black;
     color: white;
+    padding: 5px 0;
 }
 
 .btnSupprQuantite:hover {
     background-color: red;
 }
 
+/* bouton Supprimer produit */
+
 .btnSupprProduit {
     background-color: black;
     color: white;
+    padding: 5px 0;
 }
 
 .btnSupprProduit:hover {
     background-color: red;
 }
 
-/* FORMULAIRE : */
+/* Bouton vider panier */
+
+#btn-vider-panier {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#btn-vider-panier:hover {
+    background-color: red;
+}
+
+/* ======================= */
+/*    MEDIA QUERRIES       */
+/* ======================= */
+
+@media (max-width: 600px) {
+
+    .listePanier {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid black;
+        border-radius: 15px;
+        gap: 0;
+    }
+
+    .detailsProduit {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        padding: 5px 0;
+    }
+
+    .btnPanier {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btnPanier button {
+        width: 50%;
+    }
+
+
+    .listePanier h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .listePanier p {
+        width: auto;
+        margin: 0;
+    }
+
+    .listePanier p:nth-of-type(1),
+    .listePanier p:nth-of-type(2),
+    .listePanier p:nth-of-type(3) {
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 0;
+    }
+
+    .listePanier button {
+        width: 45%;
+    }
+
+    .btnSupprQuantite {
+        margin-right: 4%;
+    }
+}
+
+/* =================== */
+/*     FORMULAIRE      */
+/* =================== */
 
 #message-feedback {
     color: red;
@@ -123,14 +219,33 @@ h2 {
     font-weight: 550;
 }
 
+#email-client {
+    margin: 0 0 10px 0;
+    width: 50%;
+}
+
+/* Bouton Passer la commande */
+
+#btn-commander {
+    background-color: rgb(7, 128, 193);
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#btn-commander:hover {
+    background-color: rgb(15, 108, 7);
+}
+
 /* =================== */
 /*       FOOTER        */
 /* =================== */
 
 footer {
-    height: 10vh;
+    height: 15vh;
     background-color: cornsilk;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
@@ -139,6 +254,7 @@ footer {
 .p-footer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
+    margin: 0;
     font-weight: 550;
     font-style: italic;
 }

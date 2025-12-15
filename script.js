@@ -142,7 +142,17 @@ function afficherPanier() {
             afficherPanier();
         });
 
-        listePanier.append(h3Panier, pPrixPanier, pQuantite, sousTotal, btnSupprQuantite, btnSupprProduit);
+        const detailsProduit = document.createElement("div");
+        detailsProduit.className = "detailsProduit";
+
+        detailsProduit.append(pPrixPanier, pQuantite, sousTotal);
+
+        const btnPanier = document.createElement("div");
+        btnPanier.className = "btnPanier";
+
+        btnPanier.append(btnSupprQuantite, btnSupprProduit)
+
+        listePanier.append(h3Panier, detailsProduit, btnPanier);
         panierListe.appendChild(listePanier);
     });
 
