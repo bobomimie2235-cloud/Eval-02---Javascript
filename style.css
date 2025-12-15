@@ -221,7 +221,7 @@ h2 {
 
 #email-client {
     margin: 0 0 10px 0;
-    width: 50%;
+
 }
 
 /* Bouton Passer la commande */
@@ -237,6 +237,16 @@ h2 {
     background-color: rgb(15, 108, 7);
 }
 
+/* ======================= */
+/*    MEDIA QUERRIES       */
+/* ======================= */
+
+@media (max-width: 600px) {
+
+    #email-client {
+    width: 50%;
+}
+}
 /* =================== */
 /*       FOOTER        */
 /* =================== */

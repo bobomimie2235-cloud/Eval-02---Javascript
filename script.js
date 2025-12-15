@@ -23,15 +23,15 @@ function savePanier() {
     localStorage.setItem("panier", JSON.stringify(panierFiche));
 }
 
-// FICHES PRODUITS
+// AFFICHER LES FICHES PRODUITS
 
 function afficherProduits(liste = produits) {
     produitsConteneur.replaceChildren();
 
     if (liste.length === 0) {
-        const noResultMessage = document.createElement("p");
-        noResultMessage.textContent = "Il n'y a pas de produits"
-        boutique.appendChild(noResultMessage);
+        const p = document.createElement("p");
+        p.textContent = "Il n'y a pas de produits";
+        boutique.appendChild(p);
         return;
     }
 
@@ -73,19 +73,24 @@ afficherProduits();
 // Function Ajouter au panier avec conditions
 
 function ajouterPanier(produit) {
-    const produitExistant = panierFiche.find(item => item.id === produit.id);
+    let trouve = false;
 
-    if (produitExistant) {
-        produitExistant.quantite++;
-    } else {
+    for (let i = 0; i < panierFiche.length; i++) {
+        if (panierFiche[i].id === produit.id) {
+            panierFiche[i].quantite++;
+            trouve = true;
+        }
+    }
+
+    if (!trouve) {
         panierFiche.push({
             id: produit.id,
             nom: produit.nom,
             prix: produit.prix,
             quantite: 1
         });
-
     }
+
     savePanier();
     afficherPanier();
 }
@@ -164,10 +169,11 @@ function afficherPanier() {
 function calculTotal() {
     let total = 0;
 
-    panierFiche.forEach(item => {
-        total += item.prix * item.quantite;
-    });
-    montantTotal.textContent = Math.round(total * 100) / 100;
+    for (let i = 0; i < panierFiche.length; i++) {
+        total += panierFiche[i].prix * panierFiche[i].quantite;
+    }
+
+    montantTotal.textContent = total.toFixed(2);
     return total;
 }
 
