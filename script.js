@@ -15,6 +15,16 @@ const commandeBox = document.getElementsByClassName("commande-box");
 const messageFeedback = document.getElementById("message-feedback");
 const btnCommander = document.getElementById("btn-commander");
 
+// Sauvegarder/Charger mon panier entre chaque rafraichissement
+let panierFiche = JSON.parse(localStorage.getItem("panier")) || [];
+
+afficherPanier();
+
+// Fonction pour sauvegarder
+function savePanier() {
+    localStorage.setItem("panier", JSON.stringify(panierFiche));
+}
+
 // FICHES PRODUITS
 
 function afficherProduits(liste = produits) {
@@ -64,8 +74,6 @@ afficherProduits();
 
 // Function Ajouter au panier avec conditions
 
-let panierFiche = [];
-
 function ajouterPanier(produit) {
     const produitExistant = panierFiche.find(item => item.id === produit.id);
 
@@ -80,6 +88,7 @@ function ajouterPanier(produit) {
         });
 
     }
+    savePanier();
     afficherPanier();
 }
 
@@ -114,6 +123,8 @@ function afficherPanier() {
             if (item.quantite <= 0) {
                 panierFiche = panierFiche.filter(p => p.id !== item.id);
             }
+
+            savePanier();
             afficherPanier(); 
         });
 
