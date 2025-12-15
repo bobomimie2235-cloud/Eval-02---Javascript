@@ -78,6 +78,7 @@ function ajouterPanier(produit) {
             prix: produit.prix,
             quantite: 1
         });
+
     }
     afficherPanier();
 }
@@ -100,7 +101,23 @@ function afficherPanier() {
         const pQuantite = document.createElement("p");
         pQuantite.textContent = `Quantité : ${item.quantite}`;
 
-        div.append(h3Panier, pPrixPanier, pQuantite);
+        // Ajout Bouton Supprimer au produit du panier
+
+        const btnSupprimer = document.createElement("button");
+        btnSupprimer.textContent = "Supprimer Produit";
+        btnSupprimer.className = "btnSupprimer";
+
+        btnSupprimer.addEventListener("click", (e) => {
+            e.stopPropagation();
+            item.quantite--;
+
+            if (item.quantite <= 0) {
+                panierFiche = panierFiche.filter(p => p.id !== item.id);
+            }
+            afficherPanier(); 
+        });
+
+        div.append(h3Panier, pPrixPanier, pQuantite, btnSupprimer);
         panierListe.appendChild(div);
     });
 
