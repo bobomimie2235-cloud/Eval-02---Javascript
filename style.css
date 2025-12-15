@@ -1,0 +1,32 @@
+/* CARTE / FICHE PRODUIT : */
+
+
+.ficheProduit {
+    background-color: lightcoral;
+    width: 150px;
+}
+
+.ficheProduit.fade-out {
+    opacity: 0;
+}
+
+.ficheProduit.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* FICHE PRODUITS PANIER : */
+
+.listePanier {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    background-color: lightyellow;
+}
