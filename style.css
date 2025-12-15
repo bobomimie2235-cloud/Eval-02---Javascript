@@ -1,4 +1,42 @@
+/* =================== */
+/*    ELEMENTS FIXE    */
+/* =================== */
+
+hr {
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+/* =================== */
+/*       HEADER        */
+/* =================== */
+
+@font-face {
+    font-family: acme;
+    src: url(/Font/Acme-Regular.ttf);
+}
+
+h1 {
+    font-family: acme;
+}
+
+.panier {
+    color: rgb(45, 45, 176);
+}
+
+.malin {
+    color: rgb(22, 120, 45);
+}
+
+/* =================== */
+/*      PRODUITS       */
+/* =================== */
+
 /* CONTENEUR PRODUITS :  */
+
+h2 {
+    font-family: acme;
+}
 
 #produits-container {
     display: flex;
@@ -6,7 +44,7 @@
     gap: 10px;
 }
 
-/* CARTE / FICHE PRODUIT : */
+/* FICHE PRODUITS : */
 
 .ficheProduit {
     background-color: lightcoral;
@@ -53,4 +91,24 @@
 #message-validation {
     color: rgb(2, 78, 2);
     font-weight: 550;
+}
+
+/* =================== */
+/*       FOOTER        */
+/* =================== */
+
+footer {
+    height: 10vh;
+    background-color: cornsilk;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.p-footer {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: 550;
+    font-style: italic;
 }

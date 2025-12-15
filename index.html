@@ -9,13 +9,17 @@
 </head>
 
 <body>
+    <header>
+        <h1><span class="panier">Panier</span> <span class="malin">Malin</span></h1>
+    </header>
+    <hr>
     <main class="container">
         <section id="boutique">
             <h2>Nos Produits</h2>
             <div id="produits-container" class="grid-produits">
             </div>
         </section>
-
+        <hr>
         <aside id="panier-section">
             <h2>Votre Panier</h2>
 
@@ -27,7 +31,7 @@
                 <h3>Total : <span id="montant-total">0.00</span> €</h3>
                 <button id="btn-vider-panier" type="button">Vider le panier</button>
             </div>
-
+            <hr>
             <div class="commande-box">
                 <h3>Finaliser la commande</h3>
                 <div id="message-feedback"></div>
@@ -39,6 +43,9 @@
             </div>
         </aside>
     </main>
+    <footer>
+        <p class="p-footer">Merci d'avoir choisit "<span class="panier">Panier</span> <span class="malin">Malin</span>" !</p>
+    </footer>
 
     <script src="/script.js"></script>
 </body>
