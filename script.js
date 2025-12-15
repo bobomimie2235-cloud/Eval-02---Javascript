@@ -96,8 +96,8 @@ function afficherPanier() {
     panierListe.replaceChildren();
 
     panierFiche.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "listePanier";
+        const listePanier = document.createElement("div");
+        listePanier.className = "listePanier";
 
         const h3Panier = document.createElement("h3");
         h3Panier.textContent = item.nom;
@@ -111,13 +111,13 @@ function afficherPanier() {
         const sousTotal = document.createElement("p");
         sousTotal.textContent = "Sous-Total : " + (item.prix * item.quantite) + " €";
 
-        // Ajout Bouton Supprimer au produit du panier
+        // Ajout Bouton Supprimer une quantité
 
-        const btnSupprimer = document.createElement("button");
-        btnSupprimer.textContent = "Supprimer Produit";
-        btnSupprimer.className = "btnSupprimer";
+        const btnSupprQuantite = document.createElement("button");
+        btnSupprQuantite.textContent = "Suppr 1 quantité";
+        btnSupprQuantite.className = "btnSupprQuantite";
 
-        btnSupprimer.addEventListener("click", (e) => {
+        btnSupprQuantite.addEventListener("click", (e) => {
             e.stopPropagation();
             item.quantite--;
 
@@ -129,8 +129,21 @@ function afficherPanier() {
             afficherPanier();
         });
 
-        div.append(h3Panier, pPrixPanier, pQuantite, sousTotal, btnSupprimer);
-        panierListe.appendChild(div);
+        // Ajout Bouton Supprimer produits
+
+        const btnSupprProduit = document.createElement("button");
+        btnSupprProduit.textContent = "Suppr Produit";
+        btnSupprProduit.className = "btnSupprProduit";
+
+        btnSupprProduit.addEventListener("click", (e) => {
+            e.stopPropagation();
+            panierFiche = panierFiche.filter(p => p.id !== item.id);
+            savePanier();
+            afficherPanier();
+        });
+
+        listePanier.append(h3Panier, pPrixPanier, pQuantite, sousTotal, btnSupprQuantite, btnSupprProduit);
+        panierListe.appendChild(listePanier);
     });
 
     calculTotal();

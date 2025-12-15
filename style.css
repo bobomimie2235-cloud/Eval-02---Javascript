@@ -41,7 +41,9 @@ h2 {
 #produits-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
 }
 
 /* FICHE PRODUITS : */
@@ -50,6 +52,7 @@ h2 {
     background-color: lightcoral;
     width: 150px;
     text-align: center;
+    border-radius: 20px;
 }
 
 .ficheProduit.fade-out {
@@ -77,9 +80,36 @@ h2 {
     background-color: lightyellow;
 }
 
-.btnSupprimer {
+.listePanier h3 {
+    width: 150px;
+}
+
+.listePanier p {
+    width: 140px;
+    margin: 0;
+}
+
+.listePanier button {
+    width: 120px;
+    border-radius: 10px;
+}
+
+.btnSupprQuantite {
     background-color: black;
     color: white;
+}
+
+.btnSupprQuantite:hover {
+    background-color: red;
+}
+
+.btnSupprProduit {
+    background-color: black;
+    color: white;
+}
+
+.btnSupprProduit:hover {
+    background-color: red;
 }
 
 /* FORMULAIRE : */
