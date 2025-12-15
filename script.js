@@ -110,6 +110,9 @@ function afficherPanier() {
         const pQuantite = document.createElement("p");
         pQuantite.textContent = `Quantité : ${item.quantite}`;
 
+        const sousTotal = document.createElement("p");
+        sousTotal.textContent = "Sous-Total : " + (item.prix*item.quantite) + " €";
+
         // Ajout Bouton Supprimer au produit du panier
 
         const btnSupprimer = document.createElement("button");
@@ -128,7 +131,7 @@ function afficherPanier() {
             afficherPanier(); 
         });
 
-        div.append(h3Panier, pPrixPanier, pQuantite, btnSupprimer);
+        div.append(h3Panier, pPrixPanier, pQuantite, sousTotal, btnSupprimer);
         panierListe.appendChild(div);
     });
 

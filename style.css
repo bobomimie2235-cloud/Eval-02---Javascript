@@ -8,10 +8,10 @@
 
 /* CARTE / FICHE PRODUIT : */
 
-
 .ficheProduit {
     background-color: lightcoral;
     width: 150px;
+    text-align: center;
 }
 
 .ficheProduit.fade-out {
