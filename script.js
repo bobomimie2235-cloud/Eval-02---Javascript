@@ -148,12 +148,24 @@ function calculTotal() {
     return total;
 }
 
+// BOUTON VIDER PANIER :
+
+const btnVider = document.getElementById("btn-vider-panier");
+
+btnVider.addEventListener("click", () => {
+    panierFiche = [];
+    savePanier();
+    afficherPanier();
+    messageFeedback.textContent = "Le panier a été vidé.";
+});
+
 // FORMULAIRE
 
 const formulaire = document.getElementById("form-commande");
 const messageFeedback = document.getElementById("message-feedback");
 const mailClient = document.getElementById("email-client");
 const btnCommander = document.getElementById("btn-commander");
+const messageValidation = document.getElementById("message-validation");
 
 formulaire.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -182,7 +194,7 @@ formulaire.addEventListener("submit", function (e) {
     }
 
     if (formValid) {
-        messageFeedback.textContent = "Commande validée !";
+        messageValidation.textContent = "Commande validée !";
     }
 
 });

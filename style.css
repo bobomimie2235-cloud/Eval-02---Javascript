@@ -43,3 +43,14 @@
     background-color: black;
     color: white;
 }
+
+/* FORMULAIRE : */
+
+#message-feedback {
+    color: red;
+}
+
+#message-validation {
+    color: rgb(2, 78, 2);
+    font-weight: 550;
+}
