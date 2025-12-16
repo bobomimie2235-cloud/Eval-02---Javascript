@@ -116,15 +116,31 @@ function afficherPanier() {
         const sousTotal = document.createElement("p");
         sousTotal.textContent = "Sous-Total : " + (item.prix * item.quantite) + " €";
 
-        // Ajout Bouton Supprimer une quantité
+        // Bouton Supprimer une quantité - Moins
 
         const btnSupprQuantite = document.createElement("button");
         btnSupprQuantite.textContent = "Suppr 1 quantité";
         btnSupprQuantite.className = "btnSupprQuantite";
 
-        btnSupprQuantite.addEventListener("click", (e) => {
-            e.stopPropagation();
+        btnSupprQuantite.addEventListener("click", () => {
             item.quantite--;
+
+            if (item.quantite <= 0) {
+                panierFiche = panierFiche.filter(p => p.id !== item.id);
+            }
+
+            savePanier();
+            afficherPanier();
+        });
+
+        // Bouton Ajouter une quantité - Plus
+
+        const btnQuantitePlus = document.createElement("button");
+        btnQuantitePlus.textContent = "Ajout 1 quantité";
+        btnQuantitePlus.className = "btnQuantitePlus";
+
+        btnQuantitePlus.addEventListener("click", () => {
+            item.quantite++;
 
             if (item.quantite <= 0) {
                 panierFiche = panierFiche.filter(p => p.id !== item.id);
@@ -140,8 +156,7 @@ function afficherPanier() {
         btnSupprProduit.textContent = "Suppr Produit";
         btnSupprProduit.className = "btnSupprProduit";
 
-        btnSupprProduit.addEventListener("click", (e) => {
-            e.stopPropagation();
+        btnSupprProduit.addEventListener("click", () => {
             panierFiche = panierFiche.filter(p => p.id !== item.id);
             savePanier();
             afficherPanier();
@@ -155,7 +170,7 @@ function afficherPanier() {
         const btnPanier = document.createElement("div");
         btnPanier.className = "btnPanier";
 
-        btnPanier.append(btnSupprQuantite, btnSupprProduit)
+        btnPanier.append(btnSupprQuantite, btnSupprProduit, btnQuantitePlus);
 
         listePanier.append(h3Panier, detailsProduit, btnPanier);
         panierListe.appendChild(listePanier);
@@ -198,32 +213,20 @@ const messageValidation = document.getElementById("message-validation");
 
 formulaire.addEventListener("submit", function (e) {
     e.preventDefault();
+    messageFeedback.textContent = "";
+    messageValidation.textContent = "";
 
-    let formValid = true;
-
-    // Vérification du montant du panier
     if (calculTotal() === 0) {
         messageFeedback.textContent = "Le panier est vide";
-        formValid = false;
-    } else {
-        messageFeedback.textContent = "";
+        return;
     }
 
-    // verification du mail
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!regexEmail.test(mailClient.value.trim())) {
-        messageFeedback.textContent = "Veuillez entrer une adresse e-mail valide.";
-        mailClient.classList.add("error");
-        mailClient.classList.remove("valid");
-        formValid = false;
-    } else {
-        mailClient.classList.add("valid");
-        mailClient.classList.remove("error");
+        messageFeedback.textContent = "Email non valide";
+        return;
     }
 
-    if (formValid) {
-        messageValidation.textContent = "Commande validée !";
-    }
-
+    messageValidation.textContent = "Commande validée !";
 });

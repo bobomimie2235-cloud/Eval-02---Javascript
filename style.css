@@ -106,6 +106,19 @@ h2 {
     margin : 5px;
 }
 
+/* bouton ajout quantité */
+
+.btnQuantitePlus {
+    background-color: rgb(3, 88, 245);
+    color: white;
+    padding: 5px 0;
+}
+
+.btnQuantitePlus:hover {
+    background-color: rgb(5, 127, 42);
+}
+
+
 /* bouton supprimer quantité */
 
 .btnSupprQuantite {
