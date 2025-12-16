@@ -118,15 +118,24 @@ function afficherPanier() {
 
         // Bouton Supprimer une quantité - Moins
 
-        const btnSupprQuantite = document.createElement("button");
-        btnSupprQuantite.textContent = "Suppr 1 quantité";
-        btnSupprQuantite.className = "btnSupprQuantite";
+        const btnQuantiteMoins = document.createElement("button");
+        btnQuantiteMoins.textContent = "Suppr 1 quantité";
+        btnQuantiteMoins.className = "btnQuantiteMoins";
 
-        btnSupprQuantite.addEventListener("click", () => {
+        btnQuantiteMoins.addEventListener("click", () => {
             item.quantite--;
 
             if (item.quantite <= 0) {
-                panierFiche = panierFiche.filter(p => p.id !== item.id);
+                let nouveauPanier = [];
+
+                for (let i = 0; i < panierFiche.length; i++) {
+                    if (panierFiche[i].id !== item.id) {
+                        nouveauPanier.push(panierFiche[i]);
+                    }
+                }
+
+                panierFiche = nouveauPanier;
+
             }
 
             savePanier();
@@ -143,7 +152,16 @@ function afficherPanier() {
             item.quantite++;
 
             if (item.quantite <= 0) {
-                panierFiche = panierFiche.filter(p => p.id !== item.id);
+                let nouveauPanier = [];
+
+                for (let i = 0; i < panierFiche.length; i++) {
+                    if (panierFiche[i].id !== item.id) {
+                        nouveauPanier.push(panierFiche[i]);
+                    }
+                }
+
+                panierFiche = nouveauPanier;
+
             }
 
             savePanier();
@@ -157,7 +175,16 @@ function afficherPanier() {
         btnSupprProduit.className = "btnSupprProduit";
 
         btnSupprProduit.addEventListener("click", () => {
-            panierFiche = panierFiche.filter(p => p.id !== item.id);
+            let nouveauPanier = [];
+
+            for (let i = 0; i < panierFiche.length; i++) {
+                if (panierFiche[i].id !== item.id) {
+                    nouveauPanier.push(panierFiche[i]);
+                }
+            }
+
+            panierFiche = nouveauPanier;
+
             savePanier();
             afficherPanier();
         });
@@ -170,7 +197,7 @@ function afficherPanier() {
         const btnPanier = document.createElement("div");
         btnPanier.className = "btnPanier";
 
-        btnPanier.append(btnSupprQuantite, btnSupprProduit, btnQuantitePlus);
+        btnPanier.append(btnQuantiteMoins, btnSupprProduit, btnQuantitePlus);
 
         listePanier.append(h3Panier, detailsProduit, btnPanier);
         panierListe.appendChild(listePanier);
