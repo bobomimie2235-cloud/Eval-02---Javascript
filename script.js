@@ -102,7 +102,7 @@ function afficherPanier() {
 
     panierFiche.forEach(item => {
         const listePanier = document.createElement("div");
-        listePanier.className = "listePanier";
+        listePanier.classList.add("listePanier", "fade-in");
 
         const h3Panier = document.createElement("h3");
         h3Panier.textContent = item.nom;
